@@ -1,17 +1,14 @@
 # Definition for singly-linked list.
-class ListNode(object):
-    def __init__(self, val=0, next=None):
-        self.val = val
-        self.next = next
-
-
-class Solution(object):
-    def deleteMiddle(self, head):
-        """
-        :type head: Optional[ListNode]
-        :rtype: Optional[ListNode]
-        """
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         temp = head
+        if temp.next == None:
+            temp = None
+            return temp
         count = 0
         while temp.next != None:
             count += 1
@@ -30,27 +27,3 @@ class Solution(object):
         temp.next = temp.next.next
         curr = None
         return head
-
-
-def create_linked_list(values):
-    dummy = ListNode()
-    curr = dummy
-    for value in values:
-        curr.next = ListNode(value)
-        curr = curr.next
-    return dummy.next
-
-
-def print_linked_list(head):
-    values = []
-    while head:
-        values.append(head.val)
-        head = head.next
-    print(values)
-
-
-head = create_linked_list([1, 3, 4, 7, 1, 6])
-solution = Solution()
-new_head = solution.deleteMiddle(head)
-
-print_linked_list(new_head)
